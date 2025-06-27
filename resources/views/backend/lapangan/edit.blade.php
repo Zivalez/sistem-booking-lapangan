@@ -13,7 +13,8 @@
 
                 <div class="mb-4">
                     <label for="nama_lapangan" class="block mb-2 text-sm font-medium">Nama Lapangan</label>
-                    <input type="text" id="nama_lapangan" name="nama_lapangan" value="{{ old('nama_lapangan', $lapangan->nama_lapangan) }}" required class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5">
+                    <input type="text" id="nama_lapangan" name="nama_lapangan" 
+                           value="{{ old('nama_lapangan', $lapangan->nama_lapangan) }}" required class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5">
                     @error('nama_lapangan') <div class="text-red-400 text-sm mt-1">{{ $message }}</div> @enderror
                 </div>
 
@@ -29,7 +30,9 @@
 
                 <div class="mb-4">
                     <label for="harga_per_jam" class="block mb-2 text-sm font-medium">Harga per Jam (Rp)</label>
-                    <input type="number" id="harga_per_jam" name="harga_per_jam" value="{{ old('harga_per_jam', $lapangan->harga_per_jam) }}" required class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5">
+                    <input type="number" id="harga_per_jam" name="harga_per_jam" 
+                           value="{{ old('harga_per_jam', $lapangan->harga_per_jam) }}" 
+                           required class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5">
                     @error('harga_per_jam') <div class="text-red-400 text-sm mt-1">{{ $message }}</div> @enderror
                 </div>
 

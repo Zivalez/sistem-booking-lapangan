@@ -6,6 +6,7 @@
     <title>@yield('title', 'Admin Panel') - {{ config('app.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    {{-- Memanggil CSS Flatpickr --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         /* Custom scrollbar style */
@@ -68,7 +69,21 @@
             </main>
         </div>
     </div>
-    @yield('scripts')
+
+    {{-- Memanggil JS Flatpickr --}}
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    {{-- Memanggil JS SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- INI DIA "COLOKAN" YANG HILANG --}}
+    @yield('scripts')
+
+    {{-- Script untuk konfirmasi delete (yang sudah ada) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.show_confirm');
+            deleteButtons.forEach((button) => { /* ... isi script ... */ });
+        });
+    </script>
 </body>
 </html>
