@@ -2,8 +2,7 @@
 
 Sebuah aplikasi web yang dibangun dengan Laravel untuk manajemen jadwal dan booking lapangan. Aplikasi ini memiliki fitur unggulan berupa tampilan jadwal yang dinamis dan interaktif, memungkinkan admin untuk melihat dan mengelola slot waktu yang tersedia dan yang sudah dibooking dengan mudah.
 
-![Screenshot Jadwal Booking](path/to/your/screenshot.png)
-*(Jangan lupa ganti `path/to/your/screenshot.png` dengan screenshot asli tampilan aplikasi lu!)*
+![Screenshot Jadwal Booking](docs/screenshot-home.jpeg)
 
 ---
 
@@ -35,7 +34,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal:
 
 1.  **Clone repository ini:**
     ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    git clone [https://github.com/Zivalez/sistem-booking-lapangan.git](https://github.com/Zivalez/sistem-booking-lapangan.git)
     cd your-repo-name
     ```
     *(Ganti URL dengan URL repository GitHub lu)*
