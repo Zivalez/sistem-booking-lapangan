@@ -41,7 +41,7 @@ Ikuti langkah-langkah ini untuk menjalankan proyek di komputer lokal.
 
 1.  **Clone repository ini:**
     ```bash
-    git clone [https://github.com/Zivalez/sistem-booking-lapangan.git](https://github.com/Zivalez/sistem-booking-lapangan.git)
+    git clone https://github.com/Zivalez/sistem-booking-lapangan.git
     ```
 
 2.  **Masuk ke direktori proyek:**
