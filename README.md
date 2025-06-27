@@ -88,7 +88,6 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal:
     git clone https://github.com/Zivalez/sistem-booking-lapangan.git
     cd sistem-booking-lapangan
     ```
-    *(Mohon sesuaikan dengan URL repository Anda)*
 
 2.  **Install dependency PHP via Composer:**
     ```bash
