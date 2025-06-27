@@ -46,7 +46,7 @@ Ikuti langkah-langkah ini untuk menjalankan proyek di komputer lokal.
 
 2.  **Masuk ke direktori proyek:**
     ```bash
-    cd nama-folder-proyek
+    cd sistem-booking-lapangan
     ```
 
 3.  **Install semua dependency PHP:**
