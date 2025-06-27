@@ -12,16 +12,14 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil tanggal yang dipilih dari filter, atau pake tanggal hari ini
         $selectedDate = $request->get('date', Carbon::today()->format('Y-m-d'));
         $date = Carbon::parse($selectedDate);
 
-        // Ambil semua data lapangan
         $lapangans = Lapangan::all();
 
-        // Ambil semua booking HANYA untuk tanggal yang dipilih
         $bookings = Booking::with('lapangan')
             ->whereDate('tanggal_booking', $date)
+            ->where('status', '!=', 'Batal') // Ambil yg tidak batal saja
             ->get();
 
         // Buat slot waktu dari jam 8 pagi sampai 10 malam
@@ -30,17 +28,23 @@ class DashboardController extends Controller
             $timeSlots[] = sprintf('%02d:00', $hour);
         }
 
-        // Susun data jadi matriks jadwal [jam][lapangan_id]
+        // LOGIKA BARU YANG BISA NGITUNG DURASI
         $bookingMatrix = [];
         foreach ($timeSlots as $time) {
             foreach ($lapangans as $lapangan) {
-                // Cari, ada gak bookingan di jam & lapangan ini?
-                $booking = $bookings->first(function($booking) use ($lapangan, $time) {
-                    return $booking->lapangan_id == $lapangan->id && 
-                           Carbon::parse($booking->jam_mulai)->format('H:i') == $time;
+                // Cari booking yang MULAI di jam ini
+                $booking = $bookings->first(function($b) use ($lapangan, $time) {
+                    return $b->lapangan_id == $lapangan->id &&
+                           $time == Carbon::parse($b->jam_mulai)->format('H:i');
                 });
 
-                $bookingMatrix[$time][$lapangan->id] = $booking;
+                // Hitung durasi booking dalam jam
+                $duration = $booking ? Carbon::parse($booking->jam_selesai)->diffInHours(Carbon::parse($booking->jam_mulai)) : 0;
+
+                $bookingMatrix[$time][$lapangan->id] = [
+                    'booking' => $booking,
+                    'duration' => $duration,
+                ];
             }
         }
 
