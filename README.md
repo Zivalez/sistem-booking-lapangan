@@ -3,6 +3,8 @@
 Sebuah aplikasi web yang dibangun dengan Laravel untuk manajemen jadwal dan booking lapangan. Aplikasi ini dirancang dengan arsitektur modern menggunakan CSS Grid untuk menyajikan jadwal yang dinamis, fleksibel, dan responsif.
 
 ![Screenshot Jadwal Booking](docs/screenshot-home.jpeg)
+![Screenshot Dashboard](docs/screenshot-dashboard.jpeg)
+![Screenshot Jadwal](docs/screenshot-manajemenbooking.jpeg)
 
 ---
 
