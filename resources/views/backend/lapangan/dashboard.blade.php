@@ -4,7 +4,6 @@
 @section('page-title', 'Dashboard')
 
 @section('page-actions')
-    {{-- Ini bagian tombol di kanan atas halaman --}}
     <div class="d-flex gap-2">
         <input type="date" id="dateFilter" class="form-control" value="{{ $selectedDate }}" 
                onchange="filterByDate(this.value)">

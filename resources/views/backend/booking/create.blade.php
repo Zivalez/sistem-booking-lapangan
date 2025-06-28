@@ -9,7 +9,6 @@
             <form action="{{ route('backend.booking.store') }}" method="POST">
                 @csrf
                 
-                {{-- Dropdown Lapangan (tidak berubah) --}}
                 <div class="mb-4">
                     <label for="lapangan_id" class="block mb-2 text-sm font-medium">Lapangan</label>
                     <select id="lapangan_id" name="lapangan_id" class="bg-white/5 border border-white/20 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" required>
@@ -24,25 +23,24 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 md:gap-6">
-                    {{-- Input Nama Penyewa dengan "Satpam" --}}
+                    {{-- Input Nama Penyewa --}}
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="nama_penyewa" class="block mb-2 text-sm font-medium">Nama Penyewa</label>
                         <input type="text" id="nama_penyewa" name="nama_penyewa" value="{{ old('nama_penyewa') }}" required 
                                class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5"
-                               onkeypress="return hanyaHuruf(event)"> {{-- INI PENAMBAHANNYA --}}
+                               onkeypress="return hanyaHuruf(event)">
                         @error('nama_penyewa') <div class="text-red-400 text-sm mt-1">{{ $message }}</div> @enderror
                     </div>
-                    {{-- Input No. HP dengan "Satpam" --}}
+                    {{-- Input Nomer HP --}}
                     <div class="relative z-0 w-full mb-5 group">
                         <label for="no_hp_penyewa" class="block mb-2 text-sm font-medium">No. HP Penyewa</label>
                         <input type="text" id="no_hp_penyewa" name="no_hp_penyewa" value="{{ old('no_hp_penyewa') }}" required 
                                class="bg-white/5 border border-white/20 text-white text-sm rounded-lg block w-full p-2.5"
-                               onkeypress="return hanyaAngka(event)"> {{-- INI PENAMBAHANNYA --}}
+                               onkeypress="return hanyaAngka(event)">
                         @error('no_hp_penyewa') <div class="text-red-400 text-sm mt-1">{{ $message }}</div> @enderror
                     </div>
                 </div>
 
-                {{-- ... (input tanggal dan jam tetap sama) ... --}}
                 <div class="mb-4">
                     <label for="tanggal_booking" class="block mb-2 text-sm font-medium">Tanggal Booking</label>
                     <input type="text" id="tanggal_booking" name="tanggal_booking" value="{{ old('tanggal_booking', $preData['tanggal_booking']) }}" required class="bg-white/5 border border-white/20 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" placeholder="YYYY-MM-DD">

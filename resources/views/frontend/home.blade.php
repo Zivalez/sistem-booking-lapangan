@@ -16,7 +16,6 @@
 
 <body class="bg-gradient-to-br from-gray-900 via-indigo-900 to-slate-800 text-gray-200">
     <nav class="bg-black/20 backdrop-blur-lg sticky top-0 z-10 border-b border-white/10">
-        {{-- KODE NAVBAR YANG HILANG --}}
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between py-4">
                 <a href="{{ route('home') }}" class="text-2xl font-bold text-white">🏟️ Booking Lapangan</a>

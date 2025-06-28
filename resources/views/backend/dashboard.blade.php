@@ -41,7 +41,6 @@
                 @endphp
 
                 @if(isset($bookingRendered[$lapangan->id][$time]))
-                    {{-- Sudah dirender --}}
                     @continue
                 @endif
 

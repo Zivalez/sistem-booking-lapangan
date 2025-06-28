@@ -58,7 +58,6 @@
 @endsection
 
 @section('scripts')
-{{-- SCRIPT UNTUK MENGAKTIFKAN FLATPICKR DI FILTER INI --}}
 <script>
     flatpickr("#start_date_report", { 
         dateFormat: "Y-m-d",

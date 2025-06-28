@@ -58,8 +58,6 @@ class BookingController extends Controller
             'no_hp_penyewa.digits_between' => 'Nomor HP harus antara 10 sampai 15 digit.',
         ]);
 
-        // --- Logika cek double booking dan simpan data lainnya tetap sama ---
-
         // Cek double booking
         $isBooked = Booking::where('lapangan_id', $request->lapangan_id)
             ->where('tanggal_booking', $request->tanggal_booking)
