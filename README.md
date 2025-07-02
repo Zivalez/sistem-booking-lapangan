@@ -88,34 +88,43 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal:
 1.  **Clone repository ini:**
     ```bash
     git clone https://github.com/Zivalez/sistem-booking-lapangan.git
+    ```
+
+2. **Pindah direktori**
+    ```bash
     cd sistem-booking-lapangan
     ```
 
-2.  **Install dependency PHP via Composer:**
+3.  **Install dependency PHP via Composer:**
     ```bash
     composer install
     ```
 
-3.  **Setup file environment & application key:**
+4.  **Setup file environment & application key:**
     ```bash
     cp .env.example .env
     php artisan key:generate
     ```
 
-4.  **Konfigurasi koneksi database pada file `.env`**.
+5.  **Konfigurasi koneksi database pada file `.env`**.
 
-5.  **Jalankan migrasi dan seeder database:**
+6.  **Jalankan migrasi dan seeder database:**
     ```bash
     php artisan migrate --seed
     ```
 
-6.  **Install dependency Node.js dan compile aset:**
+7.  **Symlink direktori storage:**
+    ```bash
+    php artisan storage:link
+    ```
+
+7.  **Install dependency Node.js dan compile aset:**
     ```bash
     npm install
     npm run dev
     ```
 
-7.  **Jalankan server development:**
+8.  **Jalankan server development:**
     ```bash
     php artisan serve
     ```
