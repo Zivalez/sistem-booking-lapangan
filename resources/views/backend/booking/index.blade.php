@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-<!-- Filter Form -->
 <div class="bg-white/10 backdrop-blur-lg shadow-lg rounded-xl p-6 mb-6 border border-white/10">
     <form method="GET" action="{{ route('backend.booking.index') }}">
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
@@ -37,7 +36,6 @@
     </form>
 </div>
 
-<!-- Booking Table -->
 <div class="bg-white/10 backdrop-blur-lg shadow-lg rounded-xl border border-white/10">
     <div class="p-6">
         <div class="overflow-x-auto">
@@ -58,19 +56,24 @@
                         <td class="py-3 px-4">{{ $booking->lapangan->nama_lapangan }}</td>
                         <td class="py-3 px-4">{{ $booking->tanggal_booking->format('d/m/Y') }} ({{ \Carbon\Carbon::parse($booking->jam_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($booking->jam_selesai)->format('H:i') }})</td>
                         <td class="py-3 px-4 text-center">
-                            <span class="px-2 py-1 text-xs font-bold rounded-full 
+                            <span class="px-2 py-1 text-xs font-bold rounded-full
                                 {{ $booking->status == 'Booked' ? 'bg-yellow-500/30 text-yellow-200' : ($booking->status == 'Selesai' ? 'bg-green-500/30 text-green-200' : 'bg-red-500/30 text-red-200') }}">
                                 {{ $booking->status }}
                             </span>
                         </td>
                         <td class="py-3 px-4 text-right">
                             <div class="flex justify-end space-x-4">
-                                <a href="{{ route('backend.booking.edit', $booking) }}" class="text-yellow-400 hover:text-yellow-300"><i class="fas fa-edit"></i></a>
-                                <form action="{{ route('backend.booking.destroy', $booking) }}" method="POST">
+                                <a href="{{ route('backend.booking.edit', $booking) }}" class="text-yellow-400 hover:text-yellow-300" title="Edit"><i class="fas fa-edit"></i></a>
+
+                                {{-- INI ADALAH BAGIAN TOMBOL HAPUS --}}
+                                <form action="{{ route('backend.booking.destroy', $booking) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus booking untuk {{ $booking->nama_penyewa }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="text-red-500 hover:text-red-400 show_confirm" data-konf-delete="Booking an. {{ $booking->nama_penyewa }}"><i class="fas fa-trash"></i></button>
+                                    <button type="submit" class="text-red-500 hover:text-red-400" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
+                                {{-- AKHIR DARI BAGIAN TOMBOL HAPUS --}}
                             </div>
                         </td>
                     </tr>

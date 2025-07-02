@@ -46,16 +46,17 @@
                                         class="text-yellow-400 hover:text-yellow-300 transition-colors" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    {{-- Tombol Hapus --}}
-                                    <form action="{{ route('backend.lapangan.destroy', $lapangan) }}" method="POST">
+
+                                    {{-- INI ADALAH BAGIAN TOMBOL HAPUS --}}
+                                    <form action="{{ route('backend.lapangan.destroy', $lapangan) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus lapangan {{ $lapangan->nama_lapangan }}?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button"
-                                            class="text-red-500 hover:text-red-400 transition-colors show_confirm"
-                                            data-konf-delete="{{ $lapangan->nama_lapangan }}" title="Hapus">
+                                        <button type="submit"
+                                            class="text-red-500 hover:text-red-400 transition-colors" title="Hapus">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
+                                     {{-- AKHIR DARI BAGIAN TOMBOL HAPUS --}}
                                 </div>
                             </td>
                         </tr>
