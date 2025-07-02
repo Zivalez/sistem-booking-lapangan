@@ -106,7 +106,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal:
     php artisan key:generate
     ```
 
-5.  **Konfigurasi koneksi database pada file `.env`**.
+5.  **Konfigurasi koneksi database pada file `.env`**
 
 6.  **Jalankan migrasi dan seeder database:**
     ```bash
