@@ -13,12 +13,8 @@
 <div class="bg-white/10 backdrop-blur-lg shadow-lg rounded-xl p-6 mb-6 border border-white/10">
     <form method="GET" action="{{ route('backend.booking.index') }}">
         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
-            {{-- INPUT TANGGAL AWAL YANG DIUBAH --}}
             <input type="text" id="start_date_filter" name="start_date" value="{{ request('start_date') }}" class="bg-white/5 border-white/20 rounded-md shadow-sm text-white form-input w-full" placeholder="Tanggal Mulai">
-
-            {{-- INPUT TANGGAL AKHIR YANG DIUBAH --}}
             <input type="text" id="end_date_filter" name="end_date" value="{{ request('end_date') }}" class="bg-white/5 border-white/20 rounded-md shadow-sm text-white form-input w-full" placeholder="Tanggal Selesai">
-
             <select class="bg-white/5 border-white/20 rounded-md shadow-sm text-white form-select w-full" name="lapangan_id">
                 <option value="" class="text-black">Semua Lapangan</option>
                 @foreach($lapangans as $lapangan)
@@ -62,18 +58,18 @@
                             </span>
                         </td>
                         <td class="py-3 px-4 text-right">
-                            <div class="flex justify-end space-x-4">
-                                <a href="{{ route('backend.booking.edit', $booking) }}" class="text-yellow-400 hover:text-yellow-300" title="Edit"><i class="fas fa-edit"></i></a>
-
-                                {{-- INI ADALAH BAGIAN TOMBOL HAPUS --}}
-                                <form action="{{ route('backend.booking.destroy', $booking) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus booking untuk {{ $booking->nama_penyewa }}?')">
+                            {{-- BAGIAN AKSI YANG DIPERBARUI --}}
+                            <div class="flex justify-end space-x-2">
+                                <a href="{{ route('backend.booking.edit', $booking) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded inline-flex items-center transition-colors duration-200" title="Edit">
+                                    <i class="fas fa-edit mr-2"></i>Edit
+                                </a>
+                                <form id="delete-form-{{ $booking->id }}" action="{{ route('backend.booking.destroy', $booking) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-400" title="Hapus">
-                                        <i class="fas fa-trash"></i>
+                                    <button type="button" onclick="confirmDelete('{{ $booking->id }}', '{{ $booking->nama_penyewa }}')" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded inline-flex items-center transition-colors duration-200" title="Hapus">
+                                        <i class="fas fa-trash mr-2"></i>Hapus
                                     </button>
                                 </form>
-                                {{-- AKHIR DARI BAGIAN TOMBOL HAPUS --}}
                             </div>
                         </td>
                     </tr>
@@ -91,17 +87,30 @@
 @endsection
 
 @section('scripts')
-{{-- SCRIPT UNTUK MENGAKTIFKAN FLATPICKR DI FILTER INI --}}
+{{-- Flatpickr untuk filter tanggal --}}
 <script>
-    flatpickr("#start_date_filter", {
-        dateFormat: "Y-m-d",
-        altInput: true,
-        altFormat: "j F Y",
-    });
-    flatpickr("#end_date_filter", {
-        dateFormat: "Y-m-d",
-        altInput: true,
-        altFormat: "j F Y",
-    });
+    flatpickr("#start_date_filter", { dateFormat: "Y-m-d", altInput: true, altFormat: "j F Y" });
+    flatpickr("#end_date_filter", { dateFormat: "Y-m-d", altInput: true, altFormat: "j F Y" });
+
+    // FUNGSI BARU UNTUK KONFIRMASI HAPUS DENGAN SWEETALERT
+    function confirmDelete(id, namaPenyewa) {
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: `Anda akan menghapus booking atas nama "${namaPenyewa}".`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal',
+            background: '#1f2937', // Tema gelap
+            color: '#ffffff'      // Tema gelap
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Jika dikonfirmasi, kirim form penghapusan
+                document.getElementById('delete-form-' + id).submit();
+            }
+        })
+    }
 </script>
 @endsection

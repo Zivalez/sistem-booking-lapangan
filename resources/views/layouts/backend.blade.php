@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Booking App') - Sistem</title>
+    <title>@yield('title', 'Booking App') - Booking App</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -125,5 +125,28 @@
         @yield('scripts')
         {{-- Jika ada script konfirmasi delete, biarkan di sini --}}
     </div>
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 3500, // Notif hilang dalam 3.5 detik
+            timerProgressBar: true,
+            background: '#2d3748', // bg-gray-700
+            color: '#ffffff',      // text-white
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+    </script>
+    @endif
+    
+    {{-- Section untuk script spesifik per halaman --}}
+    @yield('scripts')
 </body>
 </html>
